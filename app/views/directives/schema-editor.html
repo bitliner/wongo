@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title" id="panel-title">{{title}}<a class="anchorjs-link" href="#panel-title"><span class="anchorjs-icon"></span></a></h3>
+      </div>
+      <div class="panel-body">
+        
+      	<div class="row" ng-repeat="(fieldName,field) in schema">
+      		<div class="col-md-12">
+      			<input type="checkbox" ng-model="field.isShown" ng-checked="schema[fieldName].isShown">&nbsp;&nbsp;{{fieldName}}
+      			<span class="label">{{field.type}}</span>
+      		</div>
+      	</div>
+
+
+      </div>
+    </div>
