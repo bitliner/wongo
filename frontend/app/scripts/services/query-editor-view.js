@@ -11,7 +11,7 @@ angular.module('wongoApp')
     .service('QueryEditorView', function($log) {
         function QueryEditorView() {}
         QueryEditorView.prototype.setFocus = function() {
-            $log.info('this.editor', this.editor);
+            // $log.info('this.editor', this.editor);
             $log.info('Setting focus...')
             this.editor.focus();
         };

@@ -1,7 +1,7 @@
 <div 
 	ui-codemirror="{ onLoad : QueryEditorView.getOnLoadHandler() }" 
 	rows="1" 
-	ui-codemirror-opts="{lineWrapping:true,lineNumbers:true,mode:'javascript'}" 
+	ui-codemirror-opts="QueryEditorView.getOptions()" 
 	ng-model="query" 
 	ng-change="setNewQuery(query)" 
 	ng-controller="QueryEditorCtrl"
