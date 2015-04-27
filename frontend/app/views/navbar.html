@@ -1,5 +1,5 @@
 <div class="header" ng-controller="NavbarCtrl">
-  <div class="navbar navbar-default" role="navigation">
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
 
@@ -16,8 +16,26 @@
       <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
         <ul class="nav navbar-nav">              
-          <li><a href="#/">Databases</a></li>
-          <li class="active"><a href="#/">Collections</a></li>
+          <li><a href="#/connection">Connection</a></li>
+          <!-- <li class="active"><a href="#/"></a></li> -->
+
+          <li class="dropdown" dropdown>
+            <a dropdown-toggle ng-click="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              Database
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a ng-click="goToDatabaseCollections(connection)" ng-repeat="connection in databaseNames">{{connection.databaseName}}</a></li>
+            </ul>
+          </li>
+
+
+          <li class="dropdown" dropdown>
+            <a dropdown-toggle ng-click="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Collections <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a ng-click="goToCollection(collection)" ng-repeat="collection in collections">{{collection}}</a></li>
+            </ul>
+          </li>
         </ul>
         <ul class="nav navbar-nav pull-right">              
           <li><a ng-click="SchemaEditorView.toggle()" class="clickable">Schema Editor</a></li>

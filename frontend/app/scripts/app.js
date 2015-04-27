@@ -16,7 +16,8 @@ angular
         'ngRoute',
         'ngSanitize',
         'ngTouch',
-        'ui.codemirror'
+        'ui.codemirror',
+        'ui.bootstrap'
     ])
     .config(function($routeProvider) {
         $routeProvider
@@ -25,12 +26,24 @@ angular
         //   controller: 'MainCtrl'
         // })
         .when('/', {
-            templateUrl: 'views/tabular-visualization.html',
-            controller: 'TabularVisualizationCtrl'
+            templateUrl: 'views/home.html',
+            controller: 'HomeCtrl'
         })
             .when('/about', {
                 templateUrl: 'views/about.html',
                 controller: 'AboutCtrl'
+            })
+        // .when('/collection', {
+        //     templateUrl: 'views/collection.html',
+        //     controller: 'CollectionCtrl'
+        // })
+        .when('/connection', {
+            templateUrl: 'views/connection.html',
+            controller: 'ConnectionCtrl'
+        })
+            .when('/collections', {
+                templateUrl: 'views/collections.html',
+                controller: 'CollectionsCtrl'
             })
             .otherwise({
                 redirectTo: '/'

@@ -1,0 +1,19 @@
+      <ng-include src=" 'views/navbar.html' "></ng-include>
+
+      <div class="row" >
+      	<div class="col-md-12">
+      		<h1>Welcome!</h1>
+      	</div>
+      </div>
+
+
+      <div class="row" >
+      	<div class="col-md-12">
+      		<!-- <button class="btn btn-default" ng-init="isSchemaEditorHidden=true" ng-click="isSchemaEditorHidden=!isSchemaEditorHidden">Schema Editor</button> -->
+      		
+      		<br>
+      		<schema-editor schema="schema" ng-hide="SchemaEditorView.isHidden"></schema-editor>
+      		<query-editor></query-editor>
+      		<tabular-visualization schema="schema" data="data"></tabular-visualization>
+      	</div>
+      </div>

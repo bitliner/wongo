@@ -8,7 +8,21 @@
  * Controller of the wongoApp
  */
 angular.module('wongoApp')
-    .controller('BodyCtrl', function($scope, KeyboardManager) {
+    .controller('BodyCtrl', function($scope, $log, $location, KeyboardManager, Collection, DataStore) {
+
+
         $scope.KeyboardManager = KeyboardManager;
+
+        $scope.mongodbConnectionUrls = DataStore.getMongodbConnectionUrls();
+
+        $log.info('BodyCtrl', '$scope.mongodbConnectionUrls', $scope.mongodbConnectionUrls);
+
+
+        if ($scope.mongodbConnectionUrls.length === 0) {
+            return $location.path('/connection');
+        }
+
+
+
 
     });

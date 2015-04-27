@@ -8,10 +8,9 @@
  * Controller of the wongoApp
  */
 angular.module('wongoApp')
-    .controller('MainCtrl', function($scope) {
-        $scope.input = [{
+    .controller('MainCtrl', function() {
 
-        }];
+
 
 
     });

@@ -22,17 +22,16 @@
       <![endif]-->
 
       <!-- Add your site or application content here -->
-      <ng-include src=" 'views/navbar.html' "></ng-include>
 
-      <div class="container">
-        <div ng-view=""></div>
-      </div>
+      <!-- <div class="container-fluid"> -->
+        <div ng-view="" class="height100perc" ng-controller="MainCtrl"></div>
+      <!-- </div> -->
 
-      <div class="footer">
+      <!-- <div class="footer">
         <div class="container">
           <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
         </div>
-      </div>
+      </div> -->
 
 
       <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -60,6 +59,7 @@
      <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
      <script src="bower_components/codemirror/lib/codemirror.js"></script>
      <script src="bower_components/angular-ui-codemirror/ui-codemirror.js"></script>
+     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
      <!-- endbower -->
      <!-- endbuild -->
 
@@ -69,7 +69,7 @@
      <script src="scripts/controllers/about.js"></script>
      <script src="scripts/services/schema-parser.js"></script>
      <script src="scripts/directives/tabular-visualization.js"></script>
-     <script src="scripts/controllers/tabular-visualization.js"></script>
+     <script src="scripts/controllers/home.js"></script>
      <script src="scripts/directives/schema-editor.js"></script>
      <script src="scripts/filters/read-nested-field.js"></script>
      <script src="scripts/controllers/query-editor.js"></script>
@@ -79,6 +79,14 @@
      <script src="scripts/services/keyboard-manager.js"></script>
      <script src="scripts/controllers/body.js"></script>
      <script src="scripts/services/query-editor-view.js"></script>
+     <script src="scripts/services/collection-resource.js.js"></script>
+     <script src="scripts/controllers/collection.js"></script>
+     <script src="scripts/controllers/connection.js"></script>
+     <script src="scripts/services/data-store.js"></script>
+     <script src="scripts/services/mongodb-utils.js"></script>
+     <script src="scripts/controllers/collections.js"></script>
+     <script src="scripts/controllers/sidebar.js"></script>
+     <script src="scripts/directives/prevent-page-scrolling.js"></script>
      <!-- endbuild -->
    </body>
    </html>
