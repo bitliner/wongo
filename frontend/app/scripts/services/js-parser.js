@@ -8,7 +8,7 @@
  * Service in the wongoApp.
  */
 angular.module('wongoApp')
-    .service('JsParsers', function() {
+    .service('JsParser', function() {
 
         var Parser = (function() {
             /*
@@ -14146,5 +14146,6 @@ angular.module('wongoApp')
                 parse: parse
             };
         })();
+        return Parser;
+
     });
-return Parser;

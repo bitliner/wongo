@@ -1,12 +1,22 @@
 <h3>Query</h3>
-<div 
+<div 	ng-controller="QueryEditorCtrl">
+
+	<div 
 	ui-codemirror="{ onLoad : QueryEditorView.getOnLoadHandler() }" 
 	rows="1" 
 	ui-codemirror-opts="QueryEditorView.getOptions()" 
 	ng-model="query" 
 	ng-change="setNewQuery(query)" 
-	ng-controller="QueryEditorCtrl"
 	></div>
+	<button class="btn btn-info" ng-click="runCommand(query)">Run</button>
+
+	<div>
+		<p ng-hide="parserError && parserError.message">{{parserResult}}</p>
+		<p ng-show="parserError && parserError.message">Syntax Error!</p>
+	</div>
+
+</div>
+
 
 <!-- <div ui-codemirror="{ onLoad : QueryEditorView.onLoad }" ng-controller="OlaCtrl"></div>
  -->

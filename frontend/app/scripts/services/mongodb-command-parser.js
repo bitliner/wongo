@@ -8,48 +8,31 @@
  * Service in the wongoApp.
  */
 angular.module('wongoApp')
-    .service('mongodbCommandParser', function() {
+    .service('MongodbCommandParser', function($q, JsParser) {
         function MongodbCommandParser() {}
-        MongodbCommandParser.prototype._extractComponents = function(str) {
-            var components;
 
-            var escapeRegExp = function(str) {
-                return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-            };
+        MongodbCommandParser.prototype._parse = function(str) {
+            var def = $q.defer();
+            var res;
 
-            // db.collectionName.find({a:{$in:['ola','ola']}},{a:1,b:0}).limit().sort()
-
-            // db
-            // fino al prossimo punto è collection .
-            // fino a .limit o sort
-            var r = [
-                '^db\.',
-                '([^\.]+)\.', //collectionName="fino al prossimo punto" seguito da punto
-                '([^\()]+)', // op="tutto tranne fino alla prossima parentesi"
-                '', // query,field is until next .limit/.sort
-            ].join('');
-
-            // r = escapeRegExp(r);
-            r = new RegExp(r, 'gi');
-            return r.exec(str);
-
+            try {
+                res = JsParser.parse(str);
+            } catch (e) {
+                def.reject(e);
+                return def.promise;
+            }
+            def.resolve(res);
+            return def.promise;
         };
         MongodbCommandParser.prototype.parse = function(str) {
-            var collectionName,
-                op,
-                query,
-                fields,
-                limit,
-                sort;
-
-            collectionName = str[1];
-            op = str[2];
-            console.log('-->', collectionName, op, query);
-
-
-            // components = str.split('.');
-            // collectionName = components[1];
-            // query = components
-
+            var def = $q.defer();
+            this._parse(str).then(function(res) {
+                def.resolve(res);
+            }, function(err) {
+                def.reject(err);
+            });
+            return def.promise;
         };
+
+        return new MongodbCommandParser();
     });
