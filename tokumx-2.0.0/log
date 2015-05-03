@@ -1,0 +1,28 @@
+Sun May  3 17:38:59.306  nssize is a deprecated parameter
+Sun May  3 17:38:59.356 [initandlisten] TokuMX starting : pid=16223 port=27017 dbpath=../data/ 64-bit host=bitliner-laptop
+Sun May  3 17:38:59.356 [initandlisten] TokuMX mongod server v2.0.0-mongodb-2.4.10, using TokuKV rev 668f1118593ba0976b6ec68768062f64d418ec83
+Sun May  3 17:38:59.356 [initandlisten] git version: c7f2e017eb71d93ca51d5073eb1570f6c9ce0ba1
+Sun May  3 17:38:59.356 [initandlisten] build info: Linux c1ad9bbe58cd 3.11.0-26-generic #45-Ubuntu SMP Tue Jul 15 04:02:06 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux BOOST_LIB_VERSION=1_49
+Sun May  3 17:38:59.356 [initandlisten] options: { dbpath: "../data/" }
+Sun May  3 17:38:59.420 [initandlisten] [tokumx] startup
+Sun May  3 17:38:59.708 [initandlisten] waiting for connections on port 27017
+Sun May  3 17:38:59.709 [websvr] admin web console waiting for connections on port 28017
+Sun May  3 17:41:11.581 [initandlisten] connection accepted from 127.0.0.1:41654 #1 (1 connection now open)
+Sun May  3 17:41:12.889 [conn1] end connection 127.0.0.1:41654 (0 connections now open)
+Sun May  3 17:41:44.451 [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+Sun May  3 17:41:44.452 [signalProcessingThread] aborting any live transactions
+Sun May  3 17:41:44.452 [signalProcessingThread] now exiting
+Sun May  3 17:41:44.452 dbexit: 
+Sun May  3 17:41:44.452 [signalProcessingThread] shutdown: going to close listening sockets...
+Sun May  3 17:41:44.452 [signalProcessingThread] closing listening socket: 16
+Sun May  3 17:41:44.452 [signalProcessingThread] closing listening socket: 17
+Sun May  3 17:41:44.452 [signalProcessingThread] closing listening socket: 19
+Sun May  3 17:41:44.452 [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+Sun May  3 17:41:44.452 [signalProcessingThread] shutdown: going to flush diaglog...
+Sun May  3 17:41:44.452 [signalProcessingThread] shutdown: going to close sockets...
+Sun May  3 17:41:44.452 [signalProcessingThread] shutdown: going to close databases...
+Sun May  3 17:41:44.511 [signalProcessingThread] shutdown: going to unload all plugins...
+Sun May  3 17:41:44.511 [signalProcessingThread] shutdown: going to shutdown TokuMX...
+Sun May  3 17:41:44.511 [signalProcessingThread] [tokumx] shutdown
+Sun May  3 17:41:44.803 [signalProcessingThread] shutdown: removing fs lock...
+Sun May  3 17:41:44.803 dbexit: really exiting now

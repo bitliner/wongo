@@ -1,0 +1,54 @@
+TokuMX README
+
+Welcome to TokuMX!
+
+COMPONENTS
+
+  bin/mongod - The database process.
+  bin/mongos - Sharding controller.
+  bin/mongo  - The database shell (uses interactive javascript).
+
+UTILITIES
+
+  bin/mongodump         - MongoDB dump tool - for backups, snapshots, etc..
+  bin/mongorestore      - MongoDB restore a dump
+  bin/mongoexport       - Export a single collection to test (JSON, CSV)
+  bin/mongoimport       - Import from JSON or CSV
+  bin/mongofiles        - Utility for putting and getting files from MongoDB GridFS
+  bin/mongostat         - Show performance statistics
+
+RUNNING
+
+  For command line options invoke:
+
+    $ ./mongod --help
+
+  To run a single server database:
+
+    $ mkdir /data/db
+    $ ./mongod
+    $
+    $ # The mongo javascript shell connects to localhost and test database by default:
+    $ ./mongo 
+    > help
+
+DRIVERS
+
+  Client drivers for most programming languages are available at mongodb.org.  Use the 
+  shell ("mongo") for administrative tasks.
+
+DOCUMENTATION
+
+  http://www.mongodb.org/
+  http://www.tokutek.com/
+
+MAIL LISTS AND IRC
+
+  http://dochub.mongodb.org/core/community
+
+  #tokutek on irc.freenode.net
+  tokumx-user@googlegroups.com
+
+32 BIT BUILD NOTES
+
+  TokuMX only supports 64-bit architectures.

@@ -18,9 +18,9 @@ angular.module('wongoApp')
         $log.info('BodyCtrl', '$scope.mongodbConnectionUrls', $scope.mongodbConnectionUrls);
 
 
-        if ($scope.mongodbConnectionUrls.length === 0) {
-            return $location.path('/connection');
-        }
+        // if ($scope.mongodbConnectionUrls.length === 0 && $location.path() !== '/signin') {
+        //     return $location.path('/connection');
+        // }
 
 
 

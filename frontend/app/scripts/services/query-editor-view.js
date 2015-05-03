@@ -26,7 +26,7 @@ angular.module('wongoApp')
 
             return {
                 lineWrapping: true,
-                lineNumbers: true,
+                // lineNumbers: true,
                 mode: 'javascript'
             };
         };

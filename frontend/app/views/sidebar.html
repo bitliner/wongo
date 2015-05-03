@@ -12,6 +12,15 @@
         	</li>
         </ul>
 
+        <h4 ng-click="areCollectionsOpen=!areCollectionsOpen" ng-init="areCollectionsOpen=true" class="clickable">
+        	Queries
+        </h4>
+        <ul class="nav nav-sidebar" ng-hide="!areCollectionsOpen">
+        	<li ng-repeat="collection in collections">
+        		<a class="clickable" ng-click="goToCollection(collection)">{{collection}}</a>
+        	</li>
+        </ul>
+
 
     </div>
 

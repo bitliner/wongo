@@ -13,7 +13,8 @@ angular.module('wongoApp')
 
         function startup() {
             if ($scope.mongodbConnectionUrls.length === 0) {
-                return $location.path('/connection');
+                // alert('-->')
+                return $location.path('/signin');
             }
 
             $scope.databaseNames = DataStore.getMongodbConnectionUrls().map(MongodbUtils.parseMongodbConnectionUrl);
