@@ -1,4 +1,5 @@
-<h3>Query</h3>
+<h4>&lt;query/&gt;</h4>
+<!-- <button class="btn">&lt;query/&gt;</button> -->
 <div 	ng-controller="QueryEditorCtrl">
 
 	<div 
@@ -9,6 +10,7 @@
 	ng-change="setNewQuery(query)" 
 	></div>
 	<button class="btn btn-info" ng-click="runCommand(query)">Run</button>
+	<button class="btn btn-info" ng-click="QueryEditorView.openModalToSpecifyQueryName(query)">Save</button>
 
 	<div>
 		<p ng-hide="parserError && parserError.message">{{parserResult}}</p>

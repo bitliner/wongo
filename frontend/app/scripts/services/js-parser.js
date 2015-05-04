@@ -1,6 +1,11 @@
 'use strict';
 
 /**
+ * https://github.com/pegjs/pegjs/blob/master/examples/javascript.pegjs
+ * http://pegjs.org/online
+ * https://medium.com/@daffl/beyond-regex-writing-a-parser-in-javascript-8c9ed10576a6
+ */
+/**
  * @ngdoc service
  * @name wongoApp.jsParser
  * @description
@@ -9,6 +14,7 @@
  */
 angular.module('wongoApp')
     .service('JsParser', function() {
+
 
         var Parser = (function() {
             /*
@@ -1507,6 +1513,7 @@ angular.module('wongoApp')
                     peg$maxFailExpected = [],
                     peg$silentFails = 0,
 
+                    peg$cache = {},
                     peg$result;
 
                 if ("startRule" in options) {
@@ -1684,6 +1691,14 @@ angular.module('wongoApp')
                 function peg$parseStart() {
                     var s0, s1, s2, s3;
 
+                    var key = peg$currPos * 194 + 0,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
+
                     s0 = peg$currPos;
                     s1 = peg$parse__();
                     if (s1 !== peg$FAILED) {
@@ -1707,11 +1722,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseSourceCharacter() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 1,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (input.length > peg$currPos) {
                         s0 = input.charAt(peg$currPos);
@@ -1723,11 +1751,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseWhiteSpace() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 2,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     peg$silentFails++;
                     if (input.charCodeAt(peg$currPos) === 9) {
@@ -1805,11 +1846,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLineTerminator() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 3,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c16.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -1821,11 +1875,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLineTerminatorSequence() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 4,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     peg$silentFails++;
                     if (input.charCodeAt(peg$currPos) === 10) {
@@ -1889,11 +1956,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseComment() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 5,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     peg$silentFails++;
                     s0 = peg$parseMultiLineComment();
@@ -1908,11 +1988,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseMultiLineComment() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 6,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 2) === peg$c30) {
@@ -2019,11 +2112,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseMultiLineCommentNoLineTerminator() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 7,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 2) === peg$c30) {
@@ -2136,11 +2242,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseSingleLineComment() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 8,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 2) === peg$c36) {
@@ -2217,11 +2336,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseIdentifier() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 9,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -2249,11 +2381,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseIdentifierName() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 10,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     peg$silentFails++;
                     s0 = peg$currPos;
@@ -2285,11 +2430,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseIdentifierStart() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 11,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseUnicodeLetter();
                     if (s0 === peg$FAILED) {
@@ -2341,11 +2499,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseIdentifierPart() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 12,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseIdentifierStart();
                     if (s0 === peg$FAILED) {
@@ -2380,11 +2551,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseUnicodeLetter() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 13,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseLu();
                     if (s0 === peg$FAILED) {
@@ -2403,22 +2587,48 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseUnicodeCombiningMark() {
                     var s0;
 
+                    var key = peg$currPos * 194 + 14,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
+
                     s0 = peg$parseMn();
                     if (s0 === peg$FAILED) {
                         s0 = peg$parseMc();
                     }
+
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
 
                     return s0;
                 }
 
                 function peg$parseReservedWord() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 15,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseKeyword();
                     if (s0 === peg$FAILED) {
@@ -2431,11 +2641,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseKeyword() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 16,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseBreakToken();
                     if (s0 === peg$FAILED) {
@@ -2514,11 +2737,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseFutureReservedWord() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 17,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseClassToken();
                     if (s0 === peg$FAILED) {
@@ -2540,11 +2776,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLiteral() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 18,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseNullLiteral();
                     if (s0 === peg$FAILED) {
@@ -2560,11 +2809,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseNullLiteral() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 19,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseNullToken();
@@ -2574,11 +2836,24 @@ angular.module('wongoApp')
                     }
                     s0 = s1;
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBooleanLiteral() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 20,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseTrueToken();
@@ -2597,11 +2872,24 @@ angular.module('wongoApp')
                         s0 = s1;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseNumericLiteral() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 21,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     peg$silentFails++;
                     s0 = peg$currPos;
@@ -2670,11 +2958,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseDecimalLiteral() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 22,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseDecimalIntegerLiteral();
@@ -2786,11 +3087,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseDecimalIntegerLiteral() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 23,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (input.charCodeAt(peg$currPos) === 48) {
                         s0 = peg$c61;
@@ -2824,11 +3138,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseDecimalDigit() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 24,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c63.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -2840,11 +3167,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseNonZeroDigit() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 25,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c65.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -2856,11 +3196,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseExponentPart() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 26,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseExponentIndicator();
@@ -2878,11 +3231,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseExponentIndicator() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 27,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (input.substr(peg$currPos, 1).toLowerCase() === peg$c67) {
                         s0 = input.charAt(peg$currPos);
@@ -2894,11 +3260,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseSignedInteger() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 28,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (peg$c69.test(input.charAt(peg$currPos))) {
@@ -2936,11 +3315,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseHexIntegerLiteral() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 29,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 2).toLowerCase() === peg$c71) {
@@ -2981,11 +3373,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseHexDigit() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 30,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c74.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -2997,11 +3402,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseStringLiteral() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 31,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     peg$silentFails++;
                     s0 = peg$currPos;
@@ -3100,11 +3518,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseDoubleStringCharacter() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 32,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -3183,11 +3614,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseSingleStringCharacter() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 33,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -3266,11 +3710,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLineContinuation() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 34,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 92) {
@@ -3297,11 +3754,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseEscapeSequence() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 35,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseCharacterEscapeSequence();
                     if (s0 === peg$FAILED) {
@@ -3346,22 +3816,48 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseCharacterEscapeSequence() {
                     var s0;
 
+                    var key = peg$currPos * 194 + 36,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
+
                     s0 = peg$parseSingleEscapeCharacter();
                     if (s0 === peg$FAILED) {
                         s0 = peg$parseNonEscapeCharacter();
                     }
+
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
 
                     return s0;
                 }
 
                 function peg$parseSingleEscapeCharacter() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 37,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (input.charCodeAt(peg$currPos) === 39) {
                         s0 = peg$c80;
@@ -3497,11 +3993,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseNonEscapeCharacter() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 38,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -3532,11 +4041,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseEscapeCharacter() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 39,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseSingleEscapeCharacter();
                     if (s0 === peg$FAILED) {
@@ -3565,11 +4087,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseHexEscapeSequence() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 40,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 120) {
@@ -3615,11 +4150,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseUnicodeEscapeSequence() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 41,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 117) {
@@ -3677,11 +4225,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRegularExpressionLiteral() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 42,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     peg$silentFails++;
                     s0 = peg$currPos;
@@ -3746,11 +4307,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRegularExpressionBody() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 43,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseRegularExpressionFirstChar();
@@ -3773,11 +4347,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRegularExpressionFirstChar() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 44,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -3818,11 +4405,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRegularExpressionChar() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 45,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -3863,11 +4463,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRegularExpressionBackslashSequence() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 46,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 92) {
@@ -3893,11 +4506,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRegularExpressionNonTerminator() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 47,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -3924,11 +4550,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRegularExpressionClass() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 48,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 91) {
@@ -3973,11 +4612,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRegularExpressionClassChar() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 49,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -4015,11 +4667,24 @@ angular.module('wongoApp')
                         s0 = peg$parseRegularExpressionBackslashSequence();
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRegularExpressionFlags() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 50,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = [];
                     s1 = peg$parseIdentifierPart();
@@ -4028,11 +4693,24 @@ angular.module('wongoApp')
                         s1 = peg$parseIdentifierPart();
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLl() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 51,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c122.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -4044,11 +4722,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLm() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 52,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c124.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -4060,11 +4751,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLo() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 53,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c126.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -4076,11 +4780,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLt() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 54,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c128.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -4092,11 +4809,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLu() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 55,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c130.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -4108,11 +4838,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseMc() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 56,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c132.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -4124,11 +4867,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseMn() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 57,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c134.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -4140,11 +4896,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseNd() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 58,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c136.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -4156,11 +4925,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseNl() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 59,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c138.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -4172,11 +4954,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parsePc() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 60,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c140.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -4188,11 +4983,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseZs() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 61,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (peg$c142.test(input.charAt(peg$currPos))) {
                         s0 = input.charAt(peg$currPos);
@@ -4204,11 +5012,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBreakToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 62,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 5) === peg$c144) {
@@ -4243,11 +5064,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseCaseToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 63,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 4) === peg$c146) {
@@ -4282,11 +5116,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseCatchToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 64,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 5) === peg$c148) {
@@ -4321,11 +5168,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseClassToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 65,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 5) === peg$c150) {
@@ -4360,11 +5220,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseConstToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 66,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 5) === peg$c152) {
@@ -4399,11 +5272,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseContinueToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 67,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 8) === peg$c154) {
@@ -4438,11 +5324,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseDebuggerToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 68,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 8) === peg$c156) {
@@ -4477,11 +5376,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseDefaultToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 69,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 7) === peg$c158) {
@@ -4516,11 +5428,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseDeleteToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 70,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 6) === peg$c160) {
@@ -4555,11 +5480,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseDoToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 71,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 2) === peg$c162) {
@@ -4594,11 +5532,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseElseToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 72,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 4) === peg$c164) {
@@ -4633,11 +5584,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseEnumToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 73,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 4) === peg$c166) {
@@ -4672,11 +5636,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseExportToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 74,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 6) === peg$c168) {
@@ -4711,11 +5688,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseExtendsToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 75,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 7) === peg$c170) {
@@ -4750,11 +5740,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseFalseToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 76,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 5) === peg$c172) {
@@ -4789,11 +5792,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseFinallyToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 77,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 7) === peg$c174) {
@@ -4828,11 +5844,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseForToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 78,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 3) === peg$c176) {
@@ -4867,11 +5896,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseFunctionToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 79,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 8) === peg$c178) {
@@ -4906,11 +5948,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseGetToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 80,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 3) === peg$c180) {
@@ -4945,11 +6000,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseIfToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 81,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 2) === peg$c182) {
@@ -4984,11 +6052,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseImportToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 82,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 6) === peg$c184) {
@@ -5023,11 +6104,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseInstanceofToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 83,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 10) === peg$c186) {
@@ -5062,11 +6156,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseInToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 84,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 2) === peg$c188) {
@@ -5101,11 +6208,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseNewToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 85,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 3) === peg$c190) {
@@ -5140,11 +6260,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseNullToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 86,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 4) === peg$c192) {
@@ -5179,11 +6312,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseReturnToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 87,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 6) === peg$c194) {
@@ -5218,11 +6364,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseSetToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 88,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 3) === peg$c196) {
@@ -5257,11 +6416,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseSuperToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 89,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 5) === peg$c198) {
@@ -5296,11 +6468,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseSwitchToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 90,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 6) === peg$c200) {
@@ -5335,11 +6520,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseThisToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 91,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 4) === peg$c202) {
@@ -5374,11 +6572,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseThrowToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 92,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 5) === peg$c204) {
@@ -5413,11 +6624,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseTrueToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 93,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 4) === peg$c206) {
@@ -5452,11 +6676,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseTryToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 94,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 3) === peg$c208) {
@@ -5491,11 +6728,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseTypeofToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 95,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 6) === peg$c210) {
@@ -5530,11 +6780,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseVarToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 96,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 3) === peg$c212) {
@@ -5569,11 +6832,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseVoidToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 97,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 4) === peg$c214) {
@@ -5608,11 +6884,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseWhileToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 98,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 5) === peg$c216) {
@@ -5647,11 +6936,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseWithToken() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 99,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.substr(peg$currPos, 4) === peg$c218) {
@@ -5686,11 +6988,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parse__() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 100,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = [];
                     s1 = peg$parseWhiteSpace();
@@ -5711,11 +7026,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parse_() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 101,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = [];
                     s1 = peg$parseWhiteSpace();
@@ -5730,11 +7058,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseEOS() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 102,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parse__();
@@ -5837,11 +7178,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseEOF() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 103,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     peg$silentFails++;
@@ -5862,11 +7216,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parsePrimaryExpression() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 104,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseThisToken();
@@ -5940,11 +7307,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseArrayLiteral() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+
+                    var key = peg$currPos * 194 + 105,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 91) {
@@ -6155,11 +7535,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseElementList() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+
+                    var key = peg$currPos * 194 + 106,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -6331,11 +7724,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseElision() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 107,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 44) {
@@ -6411,11 +7817,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseObjectLiteral() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 108,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 123) {
@@ -6580,11 +7999,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parsePropertyNameAndValueList() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 109,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parsePropertyAssignment();
@@ -6676,11 +8108,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parsePropertyAssignment() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15;
+
+                    var key = peg$currPos * 194 + 110,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parsePropertyName();
@@ -6969,11 +8414,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parsePropertyName() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 111,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseIdentifierName();
                     if (s0 === peg$FAILED) {
@@ -6983,11 +8441,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parsePropertySetParameterList() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 112,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseIdentifier();
@@ -6997,11 +8468,24 @@ angular.module('wongoApp')
                     }
                     s0 = s1;
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseMemberExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+
+                    var key = peg$currPos * 194 + 113,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parsePrimaryExpression();
@@ -7250,11 +8734,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseNewExpression() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 114,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseMemberExpression();
                     if (s0 === peg$FAILED) {
@@ -7282,11 +8779,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseCallExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+
+                    var key = peg$currPos * 194 + 115,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -7553,11 +9063,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseArguments() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 116,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 40) {
@@ -7621,11 +9144,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseArgumentList() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 117,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseAssignmentExpression();
@@ -7717,22 +9253,48 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLeftHandSideExpression() {
                     var s0;
 
+                    var key = peg$currPos * 194 + 118,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
+
                     s0 = peg$parseCallExpression();
                     if (s0 === peg$FAILED) {
                         s0 = peg$parseNewExpression();
                     }
+
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
 
                     return s0;
                 }
 
                 function peg$parsePostfixExpression() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 119,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseLeftHandSideExpression();
@@ -7760,11 +9322,24 @@ angular.module('wongoApp')
                         s0 = peg$parseLeftHandSideExpression();
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parsePostfixOperator() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 120,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (input.substr(peg$currPos, 2) === peg$c261) {
                         s0 = peg$c261;
@@ -7787,11 +9362,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseUnaryExpression() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 121,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parsePostfixExpression();
                     if (s0 === peg$FAILED) {
@@ -7819,11 +9407,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseUnaryOperator() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 122,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseDeleteToken();
@@ -7986,11 +9587,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseMultiplicativeExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 123,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseUnaryExpression();
@@ -8066,11 +9680,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseMultiplicativeOperator() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 124,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -8212,11 +9839,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseAdditiveExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 125,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseMultiplicativeExpression();
@@ -8292,11 +9932,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseAdditiveOperator() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 126,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -8391,11 +10044,24 @@ angular.module('wongoApp')
                         s0 = s1;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseShiftExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 127,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseAdditiveExpression();
@@ -8471,11 +10137,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseShiftOperator() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 128,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -8617,11 +10296,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRelationalExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 129,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseShiftExpression();
@@ -8697,11 +10389,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRelationalOperator() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 130,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (input.substr(peg$currPos, 2) === peg$c291) {
                         s0 = peg$c291;
@@ -8834,11 +10539,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRelationalExpressionNoIn() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 131,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseShiftExpression();
@@ -8914,11 +10632,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseRelationalOperatorNoIn() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 132,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (input.substr(peg$currPos, 2) === peg$c291) {
                         s0 = peg$c291;
@@ -9043,11 +10774,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseEqualityExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 133,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseRelationalExpression();
@@ -9123,11 +10867,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseEqualityExpressionNoIn() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 134,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseRelationalExpressionNoIn();
@@ -9203,11 +10960,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseEqualityOperator() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 135,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (input.substr(peg$currPos, 3) === peg$c299) {
                         s0 = peg$c299;
@@ -9252,11 +11022,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBitwiseANDExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 136,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseEqualityExpression();
@@ -9332,11 +11115,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBitwiseANDExpressionNoIn() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 137,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseEqualityExpressionNoIn();
@@ -9412,11 +11208,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBitwiseANDOperator() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 138,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -9464,11 +11273,24 @@ angular.module('wongoApp')
                     }
                     s0 = s1;
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBitwiseXORExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 139,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseBitwiseANDExpression();
@@ -9544,11 +11366,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBitwiseXORExpressionNoIn() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 140,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseBitwiseANDExpressionNoIn();
@@ -9624,11 +11459,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBitwiseXOROperator() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 141,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -9676,11 +11524,24 @@ angular.module('wongoApp')
                     }
                     s0 = s1;
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBitwiseORExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 142,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseBitwiseXORExpression();
@@ -9756,11 +11617,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBitwiseORExpressionNoIn() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 143,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseBitwiseXORExpressionNoIn();
@@ -9836,11 +11710,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBitwiseOROperator() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 144,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -9888,11 +11775,24 @@ angular.module('wongoApp')
                     }
                     s0 = s1;
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLogicalANDExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 145,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseBitwiseORExpression();
@@ -9968,11 +11868,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLogicalANDExpressionNoIn() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 146,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseBitwiseORExpressionNoIn();
@@ -10048,11 +11961,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLogicalANDOperator() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 147,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (input.substr(peg$currPos, 2) === peg$c317) {
                         s0 = peg$c317;
@@ -10064,11 +11990,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLogicalORExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 148,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseLogicalANDExpression();
@@ -10144,11 +12083,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLogicalORExpressionNoIn() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 149,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseLogicalANDExpressionNoIn();
@@ -10224,11 +12176,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLogicalOROperator() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 150,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (input.substr(peg$currPos, 2) === peg$c319) {
                         s0 = peg$c319;
@@ -10240,11 +12205,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseConditionalExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+
+                    var key = peg$currPos * 194 + 151,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseLogicalORExpression();
@@ -10324,11 +12302,24 @@ angular.module('wongoApp')
                         s0 = peg$parseLogicalORExpression();
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseConditionalExpressionNoIn() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+
+                    var key = peg$currPos * 194 + 152,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseLogicalORExpressionNoIn();
@@ -10408,11 +12399,24 @@ angular.module('wongoApp')
                         s0 = peg$parseLogicalORExpressionNoIn();
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseAssignmentExpression() {
                     var s0, s1, s2, s3, s4, s5, s6;
+
+                    var key = peg$currPos * 194 + 153,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseLeftHandSideExpression();
@@ -10519,11 +12523,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseAssignmentExpressionNoIn() {
                     var s0, s1, s2, s3, s4, s5, s6;
+
+                    var key = peg$currPos * 194 + 154,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseLeftHandSideExpression();
@@ -10630,11 +12647,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseAssignmentOperator() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 155,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     if (input.substr(peg$currPos, 2) === peg$c326) {
                         s0 = peg$c326;
@@ -10756,11 +12786,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 156,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseAssignmentExpression();
@@ -10852,11 +12895,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseExpressionNoIn() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 157,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseAssignmentExpressionNoIn();
@@ -10948,11 +13004,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseStatement() {
                     var s0;
+
+                    var key = peg$currPos * 194 + 158,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$parseBlock();
                     if (s0 === peg$FAILED) {
@@ -10998,11 +13067,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBlock() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 159,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 123) {
@@ -11066,11 +13148,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseStatementList() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 160,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseStatement();
@@ -11122,11 +13217,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseVariableStatement() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 161,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseVarToken();
@@ -11157,11 +13265,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseVariableDeclarationList() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 162,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseVariableDeclaration();
@@ -11253,11 +13374,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseVariableDeclarationListNoIn() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 163,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseVariableDeclarationNoIn();
@@ -11349,11 +13483,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseVariableDeclaration() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 164,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseIdentifier();
@@ -11389,11 +13536,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseVariableDeclarationNoIn() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 165,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseIdentifier();
@@ -11429,11 +13589,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseInitialiser() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 166,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 61) {
@@ -11489,11 +13662,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseInitialiserNoIn() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 167,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 61) {
@@ -11549,11 +13735,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseEmptyStatement() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 168,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 59) {
@@ -11571,11 +13770,24 @@ angular.module('wongoApp')
                     }
                     s0 = s1;
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseExpressionStatement() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 169,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$currPos;
@@ -11620,11 +13832,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseIfStatement() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13;
+
+                    var key = peg$currPos * 194 + 170,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseIfToken();
@@ -11801,11 +14026,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseIterationStatement() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17;
+
+                    var key = peg$currPos * 194 + 171,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseDoToken();
@@ -12535,11 +14773,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseContinueStatement() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 172,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseContinueToken();
@@ -12588,11 +14839,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseBreakStatement() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 173,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseBreakToken();
@@ -12641,11 +14905,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseReturnStatement() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 174,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseReturnToken();
@@ -12694,11 +14971,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseWithStatement() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+
+                    var key = peg$currPos * 194 + 175,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseWithToken();
@@ -12775,11 +15065,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseSwitchStatement() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+
+                    var key = peg$currPos * 194 + 176,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseSwitchToken();
@@ -12856,11 +15159,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseCaseBlock() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8;
+
+                    var key = peg$currPos * 194 + 177,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     if (input.charCodeAt(peg$currPos) === 123) {
@@ -13022,11 +15338,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseCaseClauses() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 178,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseCaseClause();
@@ -13078,11 +15407,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseCaseClause() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8;
+
+                    var key = peg$currPos * 194 + 179,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseCaseToken();
@@ -13150,11 +15492,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseDefaultClause() {
                     var s0, s1, s2, s3, s4, s5, s6;
+
+                    var key = peg$currPos * 194 + 180,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseDefaultToken();
@@ -13210,11 +15565,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseLabelledStatement() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 181,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseIdentifier();
@@ -13259,11 +15627,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseThrowStatement() {
                     var s0, s1, s2, s3, s4;
+
+                    var key = peg$currPos * 194 + 182,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseThrowToken();
@@ -13294,11 +15675,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseTryStatement() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 183,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseTryToken();
@@ -13419,11 +15813,24 @@ angular.module('wongoApp')
                         }
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseCatch() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9;
+
+                    var key = peg$currPos * 194 + 184,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseCatchToken();
@@ -13500,11 +15907,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseFinally() {
                     var s0, s1, s2, s3;
+
+                    var key = peg$currPos * 194 + 185,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseFinallyToken();
@@ -13529,11 +15949,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseDebuggerStatement() {
                     var s0, s1, s2;
+
+                    var key = peg$currPos * 194 + 186,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseDebuggerToken();
@@ -13552,11 +15985,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseFunctionDeclaration() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14;
+
+                    var key = peg$currPos * 194 + 187,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseFunctionToken();
@@ -13696,11 +16142,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseFunctionExpression() {
                     var s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13;
+
+                    var key = peg$currPos * 194 + 188,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseFunctionToken();
@@ -13851,11 +16310,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseFormalParameterList() {
                     var s0, s1, s2, s3, s4, s5, s6, s7;
+
+                    var key = peg$currPos * 194 + 189,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseIdentifier();
@@ -13947,11 +16419,24 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseFunctionBody() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 190,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseSourceElements();
@@ -13964,11 +16449,24 @@ angular.module('wongoApp')
                     }
                     s0 = s1;
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseProgram() {
                     var s0, s1;
+
+                    var key = peg$currPos * 194 + 191,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseSourceElements();
@@ -13981,11 +16479,24 @@ angular.module('wongoApp')
                     }
                     s0 = s1;
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseSourceElements() {
                     var s0, s1, s2, s3, s4, s5;
+
+                    var key = peg$currPos * 194 + 192,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
 
                     s0 = peg$currPos;
                     s1 = peg$parseSourceElement();
@@ -14037,16 +16548,34 @@ angular.module('wongoApp')
                         s0 = peg$c0;
                     }
 
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
+
                     return s0;
                 }
 
                 function peg$parseSourceElement() {
                     var s0;
 
+                    var key = peg$currPos * 194 + 193,
+                        cached = peg$cache[key];
+
+                    if (cached) {
+                        peg$currPos = cached.nextPos;
+                        return cached.result;
+                    }
+
                     s0 = peg$parseStatement();
                     if (s0 === peg$FAILED) {
                         s0 = peg$parseFunctionDeclaration();
                     }
+
+                    peg$cache[key] = {
+                        nextPos: peg$currPos,
+                        result: s0
+                    };
 
                     return s0;
                 }
@@ -14146,6 +16675,12 @@ angular.module('wongoApp')
                 parse: parse
             };
         })();
+
+
+
+
+
+
         return Parser;
 
     });
